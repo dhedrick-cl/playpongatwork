@@ -2,11 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src\\app",
-    "\\src\\app\\components",
-    "\\src\\app\\components\\leaderboards",
-    "\\src\\app\\models",
-    "\\src\\app\\services"
+    "\\src\\app\\components"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
