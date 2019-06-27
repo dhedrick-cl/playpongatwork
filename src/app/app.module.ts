@@ -9,13 +9,15 @@ import { LeaderboardsComponent } from './components/leaderboards/leaderboards.co
 import { AgGridModule } from 'ag-grid-angular';
 import { PhotosService } from './services/photos.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MatchComponent,
     HomeComponent,
-    LeaderboardsComponent
+    LeaderboardsComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
