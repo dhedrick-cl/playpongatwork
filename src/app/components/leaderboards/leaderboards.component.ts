@@ -5,6 +5,7 @@ import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { PhotosService } from '../../services/photos.service';
 import { Photo } from '../../models/photo.model';
+import { LeaderboardService } from '../../services/leaderboard.service';
 
 @Component({
   selector: 'app-leaderboards',
@@ -21,18 +22,19 @@ export class LeaderboardsComponent {
   ngOnInit() {
     this.photosService.getPhotos();
   }
-  constructor(private http: HttpClient, public photosService: PhotosService) {
+  constructor(private http: HttpClient, public photosService: PhotosService, public leaderBoardService: LeaderboardService) {
     const gridSize = 4;
     this.gridOptions = {
       rowHeight: gridSize * 6,
       headerHeight: gridSize * 7,
       floatingFiltersHeight: gridSize * 7,
       columnDefs: [
-        { headerName: 'Name', field: 'albumId', sortable: true, filter: true, resizable: true },
-        { headerName: 'Points', field: 'id', sortable: true, filter: true, resizable: true },
-        { headerName: 'Total Games Played', field: 'title', sortable: true, filter: true, resizable: true },
-        { headerName: 'Games Won', field: 'url', sortable: true, filter: true, resizable: true },
-        { headerName: 'Games Lost', field: 'thumbnailUrl', sortable: true, filter: true, resizable: true }
+        { headerName: 'Name', field: 'name', sortable: true, filter: true, resizable: true },
+        { headerName: 'Nickname', field: 'nickname', sortable: true, filter: true, resizable: true },
+        { headerName: 'Points', field: 'points', sortable: true, filter: true, resizable: true },
+        { headerName: 'Total Games Played', field: 'gamesplayed', sortable: true, filter: true, resizable: true },
+        { headerName: 'Games Won', field: 'gameswon', sortable: true, filter: true, resizable: true },
+        { headerName: 'Games Lost', field: 'gameslost', sortable: true, filter: true, resizable: true }
       ]
     };
   }
@@ -40,7 +42,7 @@ export class LeaderboardsComponent {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.photosService.photos.subscribe(results => {
+    this.leaderBoardService.profiles.subscribe(results => {
       this.rowData = results;
     });
     params.api.sizeColumnsToFit();
