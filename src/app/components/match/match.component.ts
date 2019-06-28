@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatchService } from '../../services/match.service';
 
 @Component({
   selector: 'app-match',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchComponent implements OnInit {
 
-  constructor() { }
+  constructor(public matchService: MatchService) {
+    this.matchService.currentMatch.challenger = 'Travis';
+    this.matchService.currentMatch.opponent = 'Daniel';
+  }
 
   ngOnInit() {
+    
   }
 
 }

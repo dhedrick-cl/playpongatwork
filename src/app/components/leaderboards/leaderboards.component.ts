@@ -1,28 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
-import { PhotosService } from '../../services/photos.service';
-import { Photo } from '../../models/photo.model';
 import { LeaderboardService } from '../../services/leaderboard.service';
+import { Profile } from '../../models/profile.model';
 
 @Component({
   selector: 'app-leaderboards',
   templateUrl: './leaderboards.component.html',
   styleUrls: ['./leaderboards.component.scss']
 })
-export class LeaderboardsComponent {
+export class LeaderboardsComponent{
   @ViewChild('agGrid', { static: false }) agGrid: AgGridAngular;
   public gridOptions: GridOptions;
-  rowData: Photo[] = [];
+  rowData: Profile[] = [];
   private gridApi;
   private gridColumnApi;
-  photos: Observable<any>;
-  ngOnInit() {
-    this.photosService.getPhotos();
-  }
-  constructor(private http: HttpClient, public photosService: PhotosService, public leaderBoardService: LeaderboardService) {
+
+  constructor(private http: HttpClient, public leaderBoardService: LeaderboardService) {
     const gridSize = 4;
     this.gridOptions = {
       rowHeight: gridSize * 6,

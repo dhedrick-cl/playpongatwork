@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PhotosService } from './services/photos.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,6 +6,6 @@ import { PhotosService } from './services/photos.service';
 })
 export class AppComponent {
   title = 'playpongatwork';
-  constructor(public photosService: PhotosService) {
+  constructor() {
   }
 }

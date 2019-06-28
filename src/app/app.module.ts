@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatchComponent } from './components/match/match.component';
 import { HomeComponent } from './components/home/home.component';
 import { LeaderboardsComponent } from './components/leaderboards/leaderboards.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { PhotosService } from './services/photos.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './components/nav/nav.component';
 import { AngularFireModule } from '@angular/fire';
@@ -36,7 +34,7 @@ import { MatchService } from './services/match.service';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
-  providers: [PhotosService, LeaderboardService, MatchService],
+  providers: [LeaderboardService, MatchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

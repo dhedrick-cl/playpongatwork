@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
     "\\src\\app",
-    "\\src\\app\\components"
+    "\\src\\app\\components",
+    "\\src\\app\\components\\match",
+    "\\src\\app\\models",
+    "\\src\\app\\services"
   ],
+  "SelectedNode": "\\src\\app\\components\\match\\match.component.html",
   "PreviewInSolutionExplorer": false
 }

@@ -1,1 +1,5 @@
-<p>match works!</p>
+<div style="text-align: center">
+  <p><button type="button" (click)="matchService.addPoint('challenger')" class="btn btn-primary" >{{matchService.currentMatch.challenger}}</button>{{matchService.currentMatch.challengerScore}}</p>
+  <p>VS</p>
+  <p><button type="button" (click)="matchService.addPoint('opponent')" class="btn btn-secondary" >{{matchService.currentMatch.opponent}}</button>{{matchService.currentMatch.opponentScore}}</p>
+  </div>
