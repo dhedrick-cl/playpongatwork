@@ -7,7 +7,9 @@ export interface Match {
   opponent: string;
   challengerScore: number;
   opponentScore: number;
-  serving: string;
+  challengerServing: boolean;
   gameCount: number;
   totalGames: number;
+  firstServe: string;
+  numServes: number;
 }
