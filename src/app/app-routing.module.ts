@@ -3,12 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatchComponent } from './components/match/match.component';
 import { HomeComponent } from './components/home/home.component';
 import { LeaderboardsComponent } from './components/leaderboards/leaderboards.component';
+import { CreateProfileComponent } from './components/create-profile/create-profile.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'match', component: MatchComponent },
-  { path: 'leaderboard', component: LeaderboardsComponent }
+  { path: 'leaderboard', component: LeaderboardsComponent },
+  { path: 'create-profile', component: CreateProfileComponent },
+  { path: 'login', component: LoginComponent }
+
 ];
 
 @NgModule({

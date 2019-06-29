@@ -1,5 +1,5 @@
-<div style="text-align: center">
-
+<div class="row justify-content-center">
+  <div class="col-4">
   <button type="button" (click)="matchService.addPoint('challenger')" class="btn btn-primary">
     {{matchService.currentMatch.challenger}}
   </button>
@@ -9,8 +9,15 @@
   <button *ngIf="matchService.currentMatch.challengerServing == true" type="button" class="btn btn-secondary">
     Serving
   </button>
-  <p>VS</p>
-
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-4">
+    VS
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-4">
   <button type="button" (click)="matchService.addPoint('opponent')" class="btn btn-primary">
     {{matchService.currentMatch.opponent}}
   </button>
@@ -20,4 +27,5 @@
   <button *ngIf="matchService.currentMatch.challengerServing == false" type="button" class="btn btn-secondary">
     Serving
   </button>
+  </div>
 </div>

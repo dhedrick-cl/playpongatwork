@@ -4,10 +4,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\components",
+    "\\src\\app\\components\\leaderboards",
     "\\src\\app\\components\\match",
+    "\\src\\app\\components\\nav",
     "\\src\\app\\models",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\components\\match\\match.component.html",
+  "SelectedNode": "\\src\\app\\models\\match.model.ts",
   "PreviewInSolutionExplorer": false
 }

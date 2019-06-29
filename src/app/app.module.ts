@@ -15,20 +15,25 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LeaderboardService } from './services/leaderboard.service';
 import { MatchService } from './services/match.service';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateProfileComponent } from './components/create-profile/create-profile.component';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     MatchComponent,
     HomeComponent,
     LeaderboardsComponent,
-    NavComponent
+    NavComponent,
+    CreateProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
