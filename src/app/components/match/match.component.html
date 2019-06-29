@@ -1,14 +1,22 @@
+<form class="form-group" [formGroup]="editMatchForm" (ngSubmit)="onSubmit()">
 <div class="row justify-content-center">
   <div class="col-4">
-  <button type="button" (click)="matchService.addPoint('challenger')" class="btn btn-primary">
+  <button *ngIf="!editMatch" type="button" (click)="matchService.addPoint('challenger')" class="btn btn-primary">
     {{matchService.currentMatch.challenger}}
   </button>
+  <label *ngIf="editMatch" for="challengerName">Challenger</label>
+        <input *ngIf="editMatch" id="challengerName" type="text" class="form-control" formControlName="challengerName">
   <button type="button" class="btn btn-primary">
     {{matchService.currentMatch.challengerScore}}
   </button>
-  <button *ngIf="matchService.currentMatch.challengerServing == true" type="button" class="btn btn-secondary">
+  <label *ngIf="editMatch" for="challengerScore">Challenger</label>
+        <input *ngIf="editMatch" id="challengerScore" type="text" class="form-control" formControlName="challengerScore">
+  <button *ngIf="matchService.currentMatch.challengerServing && !editMatch" type="button" class="btn btn-secondary">
     Serving
   </button>
+  <button (click)="matchService.currentMatch.challengerServing = !matchService.currentMatch.challengerServing" *ngIf="matchService.currentMatch.challengerServing && editMatch" type="button" class="btn btn-secondary">
+      Switch Serve
+    </button>
   </div>
 </div>
 <div class="row justify-content-center">
@@ -21,11 +29,28 @@
   <button type="button" (click)="matchService.addPoint('opponent')" class="btn btn-primary">
     {{matchService.currentMatch.opponent}}
   </button>
+  <label *ngIf="editMatch" for="opponentName">Opponent</label>
+        <input *ngIf="editMatch" id="opponentName" type="text" class="form-control" formControlName="opponentName">
   <button type="button" class="btn btn-secondary">
     {{matchService.currentMatch.opponentScore}}
   </button>
-  <button *ngIf="matchService.currentMatch.challengerServing == false" type="button" class="btn btn-secondary">
+  <label *ngIf="editMatch" for="opponentScore">Opponent Score</label>
+        <input *ngIf="editMatch" id="opponentScore" type="text" class="form-control" formControlName="opponentScore">
+  <button *ngIf="!matchService.currentMatch.challengerServing && !editMatch" type="button" class="btn btn-secondary">
     Serving
   </button>
+  <button (click)="matchService.currentMatch.challengerServing = !matchService.currentMatch.challengerServing" *ngIf="matchService.currentMatch.challengerServing == false && editMatch" type="button" class="btn btn-secondary">
+      Switch Serve
+    </button>
   </div>
 </div>
+<div class="row justify-content-center">
+    <div class="col-4">
+      <div *ngIf="matchService.currentMatch.challengerScore + matchService.currentMatch.opponentScore == 0">
+          <button (click)='editMatch = !editMatch' type="button" class="btn btn-secondary">
+              Edit Match
+            </button>
+      </div>
+</div>
+</div>
+</form>
