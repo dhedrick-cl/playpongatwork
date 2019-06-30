@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 })
 export class MatchComponent implements OnInit {
   editMatch: boolean = false;
+  gameOver: boolean = false;
   private editMatchForm;
   constructor(public matchService: MatchService) {
     this.matchService.currentMatch.challenger = 'Travis';
