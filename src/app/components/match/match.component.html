@@ -1,4 +1,8 @@
-<form class="form-group" [formGroup]="editMatchForm" (ngSubmit)="onSubmit()">
+<form
+  class="form-group"
+  [formGroup]="editMatchForm"
+  (ngSubmit)="onSubmit(editMatchForm)"
+>
   <div class="row justify-content-center">
     <div class="col-4">
       <button

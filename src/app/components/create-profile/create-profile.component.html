@@ -1,42 +1,71 @@
-<form class="form-group" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()">
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <h1 class="text-center">Create Profile</h1>
-      </div>
+<form
+  class="form-group"
+  [formGroup]="createProfileForm"
+  (ngSubmit)="onSubmit(createProfileForm)"
+>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <h1 class="text-center">Create Profile</h1>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <label for="name">Name</label>
-        <input id="name" type="text" class="form-control" formControlName="name">
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        formControlName="name"
+      />
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <label for="nickname">Nickname</label>
-        <input id="nickname" type="text" class="form-control" formControlName="nickname">
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <label for="nickname">Nickname</label>
+      <input
+        id="nickname"
+        type="text"
+        class="form-control"
+        formControlName="nickname"
+      />
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <label for="email">Email Address</label>
-        <input id="email" type="email" class="form-control" formControlName="email">
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <label for="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="email"
+      />
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <label for="password">Password</label>
-        <input type="password" id="password" class="form-control" formControlName="password">
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+      />
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <label for="confirmpassword">Confirm Password</label>
-        <input type="password" id="confirmpassword" class="form-control" formControlName="confirmpassword">
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <label for="confirmpassword">Confirm Password</label>
+      <input
+        type="password"
+        id="confirmpassword"
+        class="form-control"
+        formControlName="confirmpassword"
+      />
     </div>
-    <div class="row justify-content-center">
-      <div class="col-4 text-center">
-        <button type="submit" class="btn btn-primary">Create Profile</button>
-      </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-4 text-center">
+      <button type="submit" class="btn btn-primary">Create Profile</button>
     </div>
-  </form>
+  </div>
+</form>
