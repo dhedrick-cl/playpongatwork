@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+import { Profile } from "../../models/profile.model";
+import { ProfileService } from "src/app/services/profile.service";
 @Component({
-  selector: 'app-create-profile',
-  templateUrl: './create-profile.component.html',
-  styleUrls: ['./create-profile.component.scss']
+  selector: "app-create-profile",
+  templateUrl: "./create-profile.component.html",
+  styleUrls: ["./create-profile.component.scss"]
 })
 export class CreateProfileComponent implements OnInit {
-  private createProfileForm;
-  constructor() { }
+  public createProfileForm;
+  constructor(public profileService: ProfileService) {}
 
   ngOnInit() {
     this.createProfileForm = new FormGroup({
@@ -26,10 +27,31 @@ export class CreateProfileComponent implements OnInit {
     let email = this.createProfileForm.get("email").value;
     let password = this.createProfileForm.get("password").value;
     let confirmpassword = this.createProfileForm.get("confirmpassword").value;
-    console.log('name: ', name, ' nickname: ', nickname, 'email: ', email, ' password: ', password, ' confirmpassword ', confirmpassword)
+
+    console.log(
+      "name: ",
+      name,
+      " nickname: ",
+      nickname,
+      "email: ",
+      email,
+      " password: ",
+      password,
+      " confirmpassword ",
+      confirmpassword
+    );
+    let newProfile: Profile = {
+      name: this.createProfileForm.get("name").value,
+      nickname: this.createProfileForm.get("nickname").value,
+      email: this.createProfileForm.get("email").value,
+      points: 0,
+      gamesplayed: 0,
+      gameswon: 0,
+      gameslost: 0
+    };
+    this.profileService.addUpdateProfile(newProfile);
+
     // this.authService.login(email, password);
     //this.router.navigate(["search"]);
-
   }
-
 }
