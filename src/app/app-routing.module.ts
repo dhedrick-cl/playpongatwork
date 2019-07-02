@@ -1,23 +1,27 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MatchComponent } from './components/match/match.component';
-import { HomeComponent } from './components/home/home.component';
-import { LeaderboardsComponent } from './components/leaderboards/leaderboards.component';
-import { CreateProfileComponent } from './components/create-profile/create-profile.component';
-import { LoginComponent } from './components/login/login.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { MatchComponent } from "./components/match/match.component";
+import { HomeComponent } from "./components/home/home.component";
+import { LeaderboardsComponent } from "./components/leaderboards/leaderboards.component";
+import { CreateProfileComponent } from "./components/create-profile/create-profile.component";
+import { LoginComponent } from "./components/login/login.component";
+import { AuthGuard } from "./services/auth-guard.service";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'match', component: MatchComponent },
-  { path: 'leaderboard', component: LeaderboardsComponent },
-  { path: 'create-profile', component: CreateProfileComponent },
-  { path: 'login', component: LoginComponent }
-
+  { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
+  { path: "match", component: MatchComponent, canActivate: [AuthGuard] },
+  {
+    path: "leaderboard",
+    component: LeaderboardsComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: "create-profile", component: CreateProfileComponent },
+  { path: "login", component: LoginComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

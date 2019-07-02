@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { CreateProfileComponent } from "./components/create-profile/create-profile.component";
 import { LoginComponent } from "./components/login/login.component";
 import { ProfileService } from "./services/profile.service";
+import { AuthService } from "./services/auth.service";
+import { AuthGuard } from "./services/auth-guard.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,13 @@ import { ProfileService } from "./services/profile.service";
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
-  providers: [LeaderboardService, MatchService, ProfileService],
+  providers: [
+    LeaderboardService,
+    MatchService,
+    ProfileService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
