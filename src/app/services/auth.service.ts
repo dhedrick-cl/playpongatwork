@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
   isLoggedIn: boolean = false;
-  constructor(public afAuth: AngularFireAuth) {}
+  constructor(public afAuth: AngularFireAuth, private router: Router) {}
 
   doRegister(email: string, password: string) {
     console.log("trying to register");
@@ -43,6 +44,7 @@ export class AuthService {
       .signOut()
       .then(() => {
         this.isLoggedIn = false;
+        this.router.navigate(["login"]);
       })
       .catch(function(error) {
         // An error happened.
