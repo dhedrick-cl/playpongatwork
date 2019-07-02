@@ -35,7 +35,7 @@ import { ProfileService } from "./services/profile.service";
     HttpClientModule,
     AgGridModule.withComponents([]),
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase, "my-app-name"), // imports firebase/app needed for everything
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule // imports firebase/storage only needed for storage features

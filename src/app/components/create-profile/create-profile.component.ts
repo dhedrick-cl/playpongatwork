@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { Profile } from "../../models/profile.model";
 import { ProfileService } from "src/app/services/profile.service";
+import { AuthService } from "src/app/services/auth.service";
 @Component({
   selector: "app-create-profile",
   templateUrl: "./create-profile.component.html",
@@ -9,7 +10,12 @@ import { ProfileService } from "src/app/services/profile.service";
 })
 export class CreateProfileComponent implements OnInit {
   public createProfileForm;
-  constructor(public profileService: ProfileService) {}
+  public errorMessage: string;
+  public successMessage: string;
+  constructor(
+    public profileService: ProfileService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.createProfileForm = new FormGroup({
@@ -22,24 +28,10 @@ export class CreateProfileComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let name = this.createProfileForm.get("name").value;
-    let nickname = this.createProfileForm.get("nickname").value;
-    let email = this.createProfileForm.get("email").value;
     let password = this.createProfileForm.get("password").value;
     let confirmpassword = this.createProfileForm.get("confirmpassword").value;
 
-    console.log(
-      "name: ",
-      name,
-      " nickname: ",
-      nickname,
-      "email: ",
-      email,
-      " password: ",
-      password,
-      " confirmpassword ",
-      confirmpassword
-    );
+    console.log(" password: ", password, " confirmpassword ", confirmpassword);
     let newProfile: Profile = {
       name: this.createProfileForm.get("name").value,
       nickname: this.createProfileForm.get("nickname").value,
@@ -50,8 +42,26 @@ export class CreateProfileComponent implements OnInit {
       gameslost: 0
     };
     this.profileService.addUpdateProfile(newProfile);
-
+    this.tryRegister(
+      this.createProfileForm.get("email").value,
+      this.createProfileForm.get("password").value
+    );
     // this.authService.login(email, password);
     //this.router.navigate(["search"]);
+  }
+
+  tryRegister(email: string, password: string) {
+    this.authService.doRegister(email, password).then(
+      res => {
+        console.log(res);
+        this.errorMessage = "";
+        this.successMessage = "Your account has been created";
+      },
+      err => {
+        console.log(err);
+        this.errorMessage = err.message;
+        this.successMessage = "";
+      }
+    );
   }
 }
