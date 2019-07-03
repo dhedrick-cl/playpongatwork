@@ -9,6 +9,7 @@ export class MatchService {
   currentMatch: Match;
   gameOver: boolean = false;
   winner: string = "";
+  challengeAccepted: boolean = false;
   constructor() {
     this.currentMatch = {
       challenger: "",

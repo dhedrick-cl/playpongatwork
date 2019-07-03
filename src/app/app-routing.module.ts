@@ -6,11 +6,12 @@ import { LeaderboardsComponent } from "./components/leaderboards/leaderboards.co
 import { CreateProfileComponent } from "./components/create-profile/create-profile.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuard } from "./services/auth-guard.service";
+import { PlayComponent } from "./components/play/play.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", component: HomeComponent },
-  { path: "match", component: MatchComponent, canActivate: [AuthGuard] },
+  { path: "play", component: PlayComponent, canActivate: [AuthGuard] },
   {
     path: "leaderboard",
     component: LeaderboardsComponent,
