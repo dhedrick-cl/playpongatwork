@@ -13,7 +13,6 @@ export class MatchComponent implements OnInit {
   public editMatchForm;
   constructor(public matchService: MatchService) {
     this.matchService.currentMatch.challenger = "Travis";
-    this.matchService.currentMatch.opponent.name = "Daniel";
     this.matchService.currentMatch.firstServe = "Travis";
   }
 
@@ -21,7 +20,10 @@ export class MatchComponent implements OnInit {
     this.editMatchForm = new FormGroup({
       challengerName: new FormControl("", Validators.required),
       challengerScore: new FormControl("", Validators.required),
-      opponentName: new FormControl("", Validators.required),
+      opponentName: new FormControl(
+        this.matchService.currentMatch.opponent.name,
+        Validators.required
+      ),
       opponentScore: new FormControl("", Validators.required)
     });
   }
