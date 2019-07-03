@@ -13,7 +13,7 @@ export class MatchComponent implements OnInit {
   public editMatchForm;
   constructor(public matchService: MatchService) {
     this.matchService.currentMatch.challenger = "Travis";
-    this.matchService.currentMatch.opponent = "Daniel";
+    this.matchService.currentMatch.opponent.name = "Daniel";
     this.matchService.currentMatch.firstServe = "Travis";
   }
 

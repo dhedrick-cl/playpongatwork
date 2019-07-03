@@ -1,5 +1,27 @@
-<ul>
-  <li *ngFor="let opponent of challengeService.opponents">
-    {{ opponent.name }}
-  </li>
-</ul>
+<form
+  class="form-group"
+  [formGroup]="challengeForm"
+  (ngSubmit)="onSubmit(challengeForm)"
+>
+  <mat-form-field>
+    <input
+      type="text"
+      matInput
+      formControlName="opponent"
+      [matAutocomplete]="auto"
+    />
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let opponent of challengeService.opponents"
+      [value]="opponent"
+      >{{ opponent.name }} aka {{ opponent.nickname }}</mat-option
+    >
+  </mat-autocomplete>
+  <div class="row justify-content-center">
+    <div class="col-4 text-center">
+      <button type="submit" class="btn btn-primary">Challenge</button>
+    </div>
+  </div>
+</form>

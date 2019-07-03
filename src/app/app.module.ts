@@ -21,8 +21,14 @@ import { LoginComponent } from "./components/login/login.component";
 import { ProfileService } from "./services/profile.service";
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./services/auth-guard.service";
-import { PlayComponent } from './components/play/play.component';
-import { ChallengeComponent } from './components/challenge/challenge.component';
+import { PlayComponent } from "./components/play/play.component";
+import { ChallengeComponent } from "./components/challenge/challenge.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule
+} from "@angular/material";
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +43,7 @@ import { ChallengeComponent } from './components/challenge/challenge.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
@@ -44,7 +51,10 @@ import { ChallengeComponent } from './components/challenge/challenge.component';
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     LeaderboardService,

@@ -11,9 +11,10 @@ export class MatchService {
   winner: string = "";
   challengeAccepted: boolean = false;
   constructor() {
+    let myopponent: Profile;
     this.currentMatch = {
       challenger: "",
-      opponent: "",
+      opponent: myopponent,
       challengerScore: 0,
       opponentScore: 0,
       challengerServing: true,
@@ -44,7 +45,7 @@ export class MatchService {
       this.currentMatch.opponentScore >= 11 &&
       this.currentMatch.opponentScore - this.currentMatch.challengerScore >= 2
     ) {
-      this.makeWinner(this.currentMatch.opponent);
+      this.makeWinner(this.currentMatch.opponent.nickname);
     }
     if (
       this.currentMatch.challengerScore + this.currentMatch.opponentScore >

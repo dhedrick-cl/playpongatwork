@@ -1,10 +1,9 @@
-import { Profile } from '../models/profile.model';
+import { Profile } from "../models/profile.model";
 
 export interface Match {
   //challenger: Profile;
-  //opponent: Profile;
+  opponent: Profile;
   challenger: string;
-  opponent: string;
   challengerScore: number;
   opponentScore: number;
   challengerServing: boolean;
