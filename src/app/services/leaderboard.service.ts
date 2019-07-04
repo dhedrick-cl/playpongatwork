@@ -1,14 +1,23 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { Observable } from "rxjs";
+import { Profile } from "../models/profile.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LeaderboardService {
-
   profiles: Observable<any[]>;
-  constructor(db: AngularFirestore) {
-    this.profiles = db.collection('leaderboard').valueChanges();
+  profiles$: Profile[] = [];
+  constructor(public db: AngularFirestore) {}
+
+  getProfiles() {
+    this.profiles = this.db.collection("leaderboard").valueChanges();
+    this.subToProfiles();
+  }
+  subToProfiles() {
+    this.profiles.subscribe(results => {
+      this.profiles$ = results;
+    });
   }
 }

@@ -77,9 +77,7 @@ export class LeaderboardsComponent {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.leaderBoardService.profiles.subscribe(results => {
-      this.rowData = results;
-    });
+    this.rowData = this.leaderBoardService.profiles$;
     params.api.sizeColumnsToFit();
     //this.filterTime();
   }

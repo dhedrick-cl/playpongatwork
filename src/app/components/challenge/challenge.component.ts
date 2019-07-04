@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ChallengeService } from "src/app/services/challenge.service";
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { MatchService } from "src/app/services/match.service";
 import { Profile } from "../../models/profile.model";
+import { LeaderboardService } from "src/app/services/leaderboard.service";
 @Component({
   selector: "app-challenge",
   templateUrl: "./challenge.component.html",
@@ -11,8 +11,8 @@ import { Profile } from "../../models/profile.model";
 export class ChallengeComponent implements OnInit {
   public challengeForm;
   constructor(
-    public challengeService: ChallengeService,
-    public matchService: MatchService
+    public matchService: MatchService,
+    public leaderboardService: LeaderboardService
   ) {}
 
   ngOnInit() {

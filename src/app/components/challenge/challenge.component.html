@@ -16,7 +16,7 @@
 
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option
-          *ngFor="let opponent of challengeService.opponents"
+          *ngFor="let opponent of leaderboardService.profiles$"
           [value]="opponent"
           >{{ opponent.name }} aka {{ opponent.nickname }}</mat-option
         >
