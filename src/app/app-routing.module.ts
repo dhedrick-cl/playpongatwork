@@ -9,8 +9,8 @@ import { AuthGuard } from "./services/auth-guard.service";
 import { PlayComponent } from "./components/play/play.component";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "play", component: PlayComponent, canActivate: [AuthGuard] },
   {
     path: "leaderboard",

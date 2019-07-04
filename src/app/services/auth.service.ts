@@ -30,6 +30,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         this.isLoggedIn = true;
+        this.router.navigate(["home"]);
       })
       .catch(function(error) {
         // Handle Errors here.

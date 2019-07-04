@@ -3,22 +3,26 @@
   [formGroup]="challengeForm"
   (ngSubmit)="onSubmit(challengeForm)"
 >
-  <mat-form-field>
-    <input
-      type="text"
-      matInput
-      formControlName="opponent"
-      [matAutocomplete]="auto"
-    />
-  </mat-form-field>
+  <div class="row justify-content-center">
+    <div class="col-4 text-center">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="opponent"
+          [matAutocomplete]="auto"
+        />
+      </mat-form-field>
 
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option
-      *ngFor="let opponent of challengeService.opponents"
-      [value]="opponent"
-      >{{ opponent.name }} aka {{ opponent.nickname }}</mat-option
-    >
-  </mat-autocomplete>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option
+          *ngFor="let opponent of challengeService.opponents"
+          [value]="opponent"
+          >{{ opponent.name }} aka {{ opponent.nickname }}</mat-option
+        >
+      </mat-autocomplete>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <div class="col-4 text-center">
       <button type="submit" class="btn btn-primary">Challenge</button>

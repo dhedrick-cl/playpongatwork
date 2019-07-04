@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ChallengeService } from "src/app/services/challenge.service";
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { MatchService } from "src/app/services/match.service";
-
+import { Profile } from "../../models/profile.model";
 @Component({
   selector: "app-challenge",
   templateUrl: "./challenge.component.html",
@@ -26,5 +26,8 @@ export class ChallengeComponent implements OnInit {
     this.matchService.challengeAccepted = true;
     this.matchService.currentMatch.opponent = myopponent;
     //this.router.navigate(["search"]);
+  }
+  displayFn(opponent?: Profile): string | undefined {
+    return opponent ? opponent.name + " aka " + opponent.nickname : undefined;
   }
 }
