@@ -51,4 +51,7 @@ export class AuthService {
         // An error happened.
       });
   }
+  getEmail() {
+    return firebase.auth().currentUser.email;
+  }
 }

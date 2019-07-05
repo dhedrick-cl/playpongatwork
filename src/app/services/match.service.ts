@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Profile } from "../models/profile.model";
 import { Match } from "../models/match.model";
+import { ProfileService } from "./profile.service";
 
 @Injectable({
   providedIn: "root"
@@ -10,10 +11,10 @@ export class MatchService {
   gameOver: boolean = false;
   winner: string = "";
   challengeAccepted: boolean = false;
-  constructor() {
+  constructor(public profileService: ProfileService) {
     let myopponent: Profile;
     this.currentMatch = {
-      challenger: "",
+      challenger: this.profileService.loggedInProfile,
       opponent: myopponent,
       challengerScore: 0,
       opponentScore: 0,
@@ -40,7 +41,7 @@ export class MatchService {
       this.currentMatch.challengerScore >= 11 &&
       this.currentMatch.challengerScore - this.currentMatch.opponentScore >= 2
     ) {
-      this.makeWinner(this.currentMatch.challenger);
+      this.makeWinner(this.currentMatch.challenger.nickname);
     } else if (
       this.currentMatch.opponentScore >= 11 &&
       this.currentMatch.opponentScore - this.currentMatch.challengerScore >= 2

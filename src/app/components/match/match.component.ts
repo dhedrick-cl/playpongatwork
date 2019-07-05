@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { MatchService } from "../../services/match.service";
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+import { ProfileService } from "src/app/services/profile.service";
+import { MatchService } from "src/app/services/match.service";
 
 @Component({
   selector: "app-match",
@@ -11,9 +12,11 @@ export class MatchComponent implements OnInit {
   editMatch: boolean = false;
   gameOver: boolean = false;
   public editMatchForm;
-  constructor(public matchService: MatchService) {
-    this.matchService.currentMatch.challenger = "Travis";
-    this.matchService.currentMatch.firstServe = "Travis";
+  constructor(
+    public profileService: ProfileService,
+    public matchService: MatchService
+  ) {
+    this.matchService.currentMatch.firstServe = "rainman";
   }
 
   ngOnInit() {

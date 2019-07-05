@@ -1,9 +1,8 @@
 import { Profile } from "../models/profile.model";
 
 export interface Match {
-  //challenger: Profile;
+  challenger: Profile;
   opponent: Profile;
-  challenger: string;
   challengerScore: number;
   opponentScore: number;
   challengerServing: boolean;

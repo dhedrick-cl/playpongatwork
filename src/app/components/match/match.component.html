@@ -22,7 +22,7 @@
         (click)="matchService.addPoint('challenger')"
         class="btn btn-primary"
       >
-        {{ matchService.currentMatch.challenger }}
+        {{ matchService.currentMatch.challenger.nickname }}
       </button>
       <label *ngIf="editMatch" for="challengerName">Challenger</label>
       <input
