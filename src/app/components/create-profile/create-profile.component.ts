@@ -41,12 +41,16 @@ export class CreateProfileComponent implements OnInit {
       gameswon: 0,
       gameslost: 0
     };
-
     this.tryRegister(
       this.createProfileForm.get("email").value,
       this.createProfileForm.get("password").value
     ).then(() => {
-      this.profileService.addUpdateProfile(newProfile);
+      this.profileService.addUpdateProfile(newProfile).then(() => {
+        this.authService.login(
+          this.createProfileForm.get("email").value,
+          this.createProfileForm.get("password").value
+        );
+      });
     });
     // this.authService.login(email, password);
     //this.router.navigate(["search"]);
@@ -56,12 +60,12 @@ export class CreateProfileComponent implements OnInit {
     return new Promise<any>((resolve, reject) => {
       this.authService.doRegister(email, password).then(
         res => {
-          console.log(res);
+          resolve(res);
           this.errorMessage = "";
           this.successMessage = "Your account has been created";
         },
         err => {
-          console.log(err);
+          reject(err);
           this.errorMessage = err.message;
           this.successMessage = "";
         }

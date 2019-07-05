@@ -8,6 +8,8 @@ import { AuthService } from "./auth.service";
   providedIn: "root"
 })
 export class ProfileService {
+  public errorMessage: string;
+  public successMessage: string;
   constructor(
     public db: AngularFirestore,
     public leaderboardService: LeaderboardService,
@@ -17,7 +19,23 @@ export class ProfileService {
   }
   loggedInProfile: Profile;
   addUpdateProfile(profile: Profile) {
-    let setDoc = this.db.collection("leaderboard").add(profile);
+    return new Promise<any>((resolve, reject) => {
+      this.db
+        .collection("leaderboard")
+        .add(profile)
+        .then(
+          res => {
+            resolve(res);
+            this.errorMessage = "";
+            this.successMessage = "Your account has been created";
+          },
+          err => {
+            reject(err);
+            this.errorMessage = err.message;
+            this.successMessage = "";
+          }
+        );
+    });
   }
 
   getLoggedInProfile() {
