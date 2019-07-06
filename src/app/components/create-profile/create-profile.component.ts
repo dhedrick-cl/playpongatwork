@@ -45,7 +45,7 @@ export class CreateProfileComponent implements OnInit {
       this.createProfileForm.get("email").value,
       this.createProfileForm.get("password").value
     ).then(() => {
-      this.profileService.addUpdateProfile(newProfile).then(() => {
+      this.profileService.addProfile(newProfile).then(() => {
         this.authService.login(
           this.createProfileForm.get("email").value,
           this.createProfileForm.get("password").value

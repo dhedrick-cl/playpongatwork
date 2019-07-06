@@ -10,4 +10,7 @@ export interface Match {
   totalGames: number;
   firstServe: string;
   numServes: number;
+  winner: Profile;
+  loser: Profile;
+  gameOver: boolean;
 }

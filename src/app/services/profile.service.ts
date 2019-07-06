@@ -18,7 +18,27 @@ export class ProfileService {
     this.getLoggedInProfile();
   }
   loggedInProfile: Profile;
-  addUpdateProfile(profile: Profile) {
+  addProfile(profile: Profile) {
+    return new Promise<any>((resolve, reject) => {
+      this.db
+        .collection("leaderboard")
+        .add(profile)
+        .then(
+          res => {
+            resolve(res);
+            this.errorMessage = "";
+            this.successMessage = "Your account has been created";
+          },
+          err => {
+            reject(err);
+            this.errorMessage = err.message;
+            this.successMessage = "";
+          }
+        );
+    });
+  }
+
+  updateProfile(profile: Profile) {
     return new Promise<any>((resolve, reject) => {
       this.db
         .collection("leaderboard")

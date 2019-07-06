@@ -2,14 +2,13 @@ import { Injectable } from "@angular/core";
 import { Profile } from "../models/profile.model";
 import { Match } from "../models/match.model";
 import { ProfileService } from "./profile.service";
+import { LeaderboardService } from "./leaderboard.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class MatchService {
   currentMatch: Match;
-  gameOver: boolean = false;
-  winner: string = "";
   challengeAccepted: boolean = false;
   constructor(public profileService: ProfileService) {
     let myopponent: Profile;
@@ -22,7 +21,10 @@ export class MatchService {
       gameCount: 0,
       totalGames: 3,
       firstServe: "",
-      numServes: 0
+      numServes: 0,
+      winner: null,
+      loser: null,
+      gameOver: false
     };
     /*this.currentMatch.challengerScore = 0;
     this.currentMatch.opponentScore = 0;
@@ -41,12 +43,18 @@ export class MatchService {
       this.currentMatch.challengerScore >= 11 &&
       this.currentMatch.challengerScore - this.currentMatch.opponentScore >= 2
     ) {
-      this.makeWinner(this.currentMatch.challenger.nickname);
+      this.finalizeGame(
+        this.currentMatch.challenger,
+        this.currentMatch.opponent
+      );
     } else if (
       this.currentMatch.opponentScore >= 11 &&
       this.currentMatch.opponentScore - this.currentMatch.challengerScore >= 2
     ) {
-      this.makeWinner(this.currentMatch.opponent.nickname);
+      this.finalizeGame(
+        this.currentMatch.opponent,
+        this.currentMatch.challenger
+      );
     }
     if (
       this.currentMatch.challengerScore + this.currentMatch.opponentScore >
@@ -63,9 +71,16 @@ export class MatchService {
     this.currentMatch.challengerServing = !this.currentMatch.challengerServing;
   }
 
-  makeWinner(winner: string) {
+  finalizeGame(winner: Profile, loser: Profile) {
     console.log(winner);
-    this.winner = winner;
-    this.gameOver = true;
+    this.currentMatch.winner = winner;
+    this.currentMatch.loser = loser;
+    this.currentMatch.gameOver = true;
+    this.currentMatch.winner.gamesplayed++;
+    this.currentMatch.winner.gameswon++;
+    this.currentMatch.loser.gamesplayed++;
+    this.currentMatch.loser.gameslost++;
+    this.profileService.updateProfile(this.currentMatch.winner);
+    this.profileService.updateProfile(this.currentMatch.loser);
   }
 }
