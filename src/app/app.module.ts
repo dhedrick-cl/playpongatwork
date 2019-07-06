@@ -29,6 +29,7 @@ import {
   MatFormFieldModule,
   MatInputModule
 } from "@angular/material";
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import {
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LeaderboardService,
