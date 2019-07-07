@@ -12,7 +12,7 @@ export class MatchService {
   constructor(public profileService: ProfileService) {
     let myopponent: Profile;
     this.currentMatch = {
-      challenger: this.profileService.loggedInProfile,
+      challenger: this.profileService.getLoggedInProfile(),
       opponent: myopponent,
       challengerScore: 0,
       opponentScore: 0,

@@ -15,10 +15,7 @@ export class ProfileService {
   constructor(
     public firestore: AngularFirestore,
     public authService: AuthService
-  ) {
-    this.getLoggedInProfile();
-  }
-  loggedInProfile: Profile;
+  ) {}
 
   getProfiles() {
     this.profiles = this.firestore.collection("profiles").valueChanges();
@@ -74,8 +71,6 @@ export class ProfileService {
   }
 
   getLoggedInProfile() {
-    this.loggedInProfile = this.profiles$.find(
-      x => x.email === this.authService.getEmail()
-    );
+    return this.profiles$.find(x => x.email === this.authService.getEmail());
   }
 }
