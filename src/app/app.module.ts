@@ -13,7 +13,6 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "../environments/environment";
-import { LeaderboardService } from "./services/leaderboard.service";
 import { MatchService } from "./services/match.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CreateProfileComponent } from "./components/create-profile/create-profile.component";
@@ -29,7 +28,7 @@ import {
   MatFormFieldModule,
   MatInputModule
 } from "@angular/material";
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule } from "@angular/service-worker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,15 +55,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register("ngsw-worker.js", {
+      enabled: environment.production
+    })
   ],
-  providers: [
-    LeaderboardService,
-    MatchService,
-    ProfileService,
-    AuthService,
-    AuthGuard
-  ],
+  providers: [MatchService, ProfileService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

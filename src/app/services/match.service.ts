@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Profile } from "../models/profile.model";
 import { Match } from "../models/match.model";
 import { ProfileService } from "./profile.service";
-import { LeaderboardService } from "./leaderboard.service";
 
 @Injectable({
   providedIn: "root"

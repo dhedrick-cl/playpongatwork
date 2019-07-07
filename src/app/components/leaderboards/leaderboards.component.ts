@@ -2,9 +2,8 @@ import { Component, ViewChild, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AgGridAngular } from "ag-grid-angular";
 import { GridOptions } from "ag-grid-community";
-import { Observable } from "rxjs";
-import { LeaderboardService } from "../../services/leaderboard.service";
 import { Profile } from "../../models/profile.model";
+import { ProfileService } from "src/app/services/profile.service";
 
 @Component({
   selector: "app-leaderboards",
@@ -18,10 +17,7 @@ export class LeaderboardsComponent {
   public gridApi;
   public gridColumnApi;
 
-  constructor(
-    public http: HttpClient,
-    public leaderBoardService: LeaderboardService
-  ) {
+  constructor(public http: HttpClient, public profileService: ProfileService) {
     const gridSize = 4;
     this.gridOptions = {
       rowHeight: gridSize * 6,
@@ -77,7 +73,7 @@ export class LeaderboardsComponent {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.rowData = this.leaderBoardService.profiles$;
+    this.rowData = this.profileService.profiles$;
     params.api.sizeColumnsToFit();
     //this.filterTime();
   }

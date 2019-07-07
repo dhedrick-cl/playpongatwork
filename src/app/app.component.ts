@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { LeaderboardService } from "./services/leaderboard.service";
+import { ProfileService } from "./services/profile.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -8,7 +7,7 @@ import { LeaderboardService } from "./services/leaderboard.service";
 })
 export class AppComponent {
   title = "playpongatwork";
-  constructor(public leaderBoardService: LeaderboardService) {
-    this.leaderBoardService.getProfiles();
+  constructor(public profileService: ProfileService) {
+    this.profileService.getProfiles();
   }
 }

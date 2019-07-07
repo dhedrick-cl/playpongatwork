@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Profile } from "../models/profile.model";
-import { LeaderboardService } from "./leaderboard.service";
 import { AuthService } from "./auth.service";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -10,18 +10,32 @@ import { AuthService } from "./auth.service";
 export class ProfileService {
   public errorMessage: string;
   public successMessage: string;
+  profiles: Observable<any[]>;
+  profiles$: Profile[] = [];
   constructor(
-    public db: AngularFirestore,
-    public leaderboardService: LeaderboardService,
+    public firestore: AngularFirestore,
     public authService: AuthService
   ) {
     this.getLoggedInProfile();
   }
   loggedInProfile: Profile;
+
+  getProfiles() {
+    this.profiles = this.firestore.collection("profiles").valueChanges();
+    this.subToProfiles();
+  }
+  getProfilesz() {
+    return this.firestore.collection("profiles").valueChanges();
+  }
+  subToProfiles() {
+    this.profiles.subscribe(results => {
+      this.profiles$ = results;
+    });
+  }
   addProfile(profile: Profile) {
     return new Promise<any>((resolve, reject) => {
-      this.db
-        .collection("leaderboard")
+      this.firestore
+        .collection("profiles")
         .add(profile)
         .then(
           res => {
@@ -40,9 +54,10 @@ export class ProfileService {
 
   updateProfile(profile: Profile) {
     return new Promise<any>((resolve, reject) => {
-      this.db
-        .collection("leaderboard")
-        .add(profile)
+      this.firestore
+        .collection("profiles")
+        .doc("8syH7eqVir6kyfOg0pJk")
+        .set({ gamesplayed: 3, gameswon: 5 }, { merge: true })
         .then(
           res => {
             resolve(res);
@@ -59,7 +74,7 @@ export class ProfileService {
   }
 
   getLoggedInProfile() {
-    this.loggedInProfile = this.leaderboardService.profiles$.find(
+    this.loggedInProfile = this.profiles$.find(
       x => x.email === this.authService.getEmail()
     );
   }
