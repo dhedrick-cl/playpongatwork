@@ -16,7 +16,7 @@ export class MatchComponent implements OnInit {
     public profileService: ProfileService,
     public matchService: MatchService
   ) {
-    this.matchService.currentMatch.firstServe = "rainman";
+    this.matchService.currentMatch.firstServe = this.matchService.opponent.name;
   }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class MatchComponent implements OnInit {
       challengerName: new FormControl("", Validators.required),
       challengerScore: new FormControl("", Validators.required),
       opponentName: new FormControl(
-        this.matchService.currentMatch.opponent.name,
+        this.matchService.opponent.name,
         Validators.required
       ),
       opponentScore: new FormControl("", Validators.required)

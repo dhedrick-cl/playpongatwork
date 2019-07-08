@@ -23,8 +23,9 @@ export class ChallengeComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     let myopponent = this.challengeForm.get("opponent").value;
-    this.matchService.challengeAccepted = true;
+    this.matchService.opponent = myopponent;
     this.matchService.currentMatch.opponent = myopponent;
+    this.matchService.challengeAccepted = true;
     //this.router.navigate(["search"]);
   }
   displayFn(opponent?: Profile): string | undefined {

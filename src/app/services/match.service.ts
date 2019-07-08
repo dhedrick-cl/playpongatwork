@@ -9,11 +9,19 @@ import { ProfileService } from "./profile.service";
 export class MatchService {
   currentMatch: Match;
   challengeAccepted: boolean = false;
+  opponent: Profile;
   constructor(public profileService: ProfileService) {
-    let myopponent: Profile;
+    this.createNewGame();
+    /*this.currentMatch.challengerScore = 0;
+    this.currentMatch.opponentScore = 0;
+    this.currentMatch.totalGames = 3;
+    this.currentMatch.gameCount = 0;
+    this.currentMatch.serving = this.currentMatch.opponent;*/
+  }
+  createNewGame() {
     this.currentMatch = {
       challenger: this.profileService.getLoggedInProfile(),
-      opponent: myopponent,
+      opponent: this.opponent,
       challengerScore: 0,
       opponentScore: 0,
       challengerServing: true,
@@ -25,12 +33,8 @@ export class MatchService {
       loser: null,
       gameOver: false
     };
-    /*this.currentMatch.challengerScore = 0;
-    this.currentMatch.opponentScore = 0;
-    this.currentMatch.totalGames = 3;
-    this.currentMatch.gameCount = 0;
-    this.currentMatch.serving = this.currentMatch.opponent;*/
   }
+
   addPoint(player: string) {
     this.currentMatch.numServes++;
     if ("challenger" === player) {
