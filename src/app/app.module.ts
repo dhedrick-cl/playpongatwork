@@ -20,7 +20,6 @@ import { LoginComponent } from "./components/login/login.component";
 import { ProfileService } from "./services/profile.service";
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./services/auth-guard.service";
-import { PlayComponent } from "./components/play/play.component";
 import { ChallengeComponent } from "./components/challenge/challenge.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -38,7 +37,6 @@ import { ServiceWorkerModule } from "@angular/service-worker";
     NavComponent,
     CreateProfileComponent,
     LoginComponent,
-    PlayComponent,
     ChallengeComponent
   ],
   imports: [
